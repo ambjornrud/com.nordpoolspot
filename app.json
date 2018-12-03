@@ -1,0 +1,295 @@
+{
+  "id": "com.nordpoolspot",
+  "version": "0.0.1",
+  "compatibility": ">=1.5.0",
+  "sdk": 2,
+  "name": {
+    "en": "Nordpool"
+  },
+  "description": {
+    "en": "Nordpool Elspot Prices"
+  },
+  "category": [
+    "tools"
+  ],
+  "permissions": [],
+  "images": {
+    "large": "/assets/images/large.png",
+    "small": "/assets/images/small.png"
+  },
+  "author": {
+    "name": "Bjørnar Almli",
+    "email": "bjornar.almli@gmail.com"
+  },
+  "capabilities": {
+    "price": {
+      "type": "number",
+      "title": {
+        "en": "Current price"
+      },
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "kr"
+      }
+    }
+  },
+  "drivers": [
+    {
+      "id": "Nordpool",
+      "name": {
+        "en": "Nordpool"
+      },
+      "mobile": {
+        "components": [
+          {
+            "id": "icon",
+            "capabilities": []
+          },
+          {
+            "id": "sensor",
+            "options": {
+              "icons": {
+                "price": "/drivers/Nordpool/assets/dollar.svg"
+              }
+            },
+            "capabilities": [
+              "price"
+            ]
+          }
+        ]
+      },
+      "capabilities": [
+        "price"
+      ],
+      "capabilitiesOptions": {
+        "price": {
+          "preventInsights": true
+        }
+      },
+      "class": "other",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "General settings"
+          },
+          "children": [
+            {
+              "id": "priceArea",
+              "type": "dropdown",
+              "label": {
+                "en": "Price area"
+              },
+              "value": "Oslo",
+              "values": [
+                {
+                  "id": "Oslo",
+                  "label": {
+                    "en": "Oslo"
+                  }
+                },
+                {
+                  "id": "Kr.sand",
+                  "label": {
+                    "en": "Kr.sand"
+                  }
+                },
+                {
+                  "id": "Bergen",
+                  "label": {
+                    "en": "Bergen"
+                  }
+                },
+                {
+                  "id": "Molde",
+                  "label": {
+                    "en": "Molde"
+                  }
+                },
+                {
+                  "id": "Tr.heim",
+                  "label": {
+                    "en": "Tr.heim"
+                  }
+                },
+                {
+                  "id": "Tromsø",
+                  "label": {
+                    "en": "Tromsø"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "images": {
+        "large": "/drivers/Nordpool/assets/images/large.png",
+        "small": "/drivers/Nordpool/assets/images/small.png"
+      }
+    }
+  ],
+  "flow": {
+    "triggers": [
+      {
+        "id": "price_changed",
+        "title": {
+          "en": "Price changed"
+        },
+        "tokens": [
+          {
+            "name": "price",
+            "type": "number",
+            "title": {
+              "en": "price"
+            }
+          },
+          {
+            "name": "priceArea",
+            "type": "string",
+            "title": {
+              "en": "price area"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=Nordpool"
+          }
+        ]
+      },
+      {
+        "id": "price_below_avg",
+        "title": {
+          "en": "Current price is [x] percent below average of the next [y] hours"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=Nordpool"
+          },
+          {
+            "name": "percentage",
+            "type": "number",
+            "placeholder": {
+              "en": "percentage"
+            }
+          },
+          {
+            "name": "hours",
+            "type": "number",
+            "placeholder": {
+              "en": "hours"
+            }
+          }
+        ]
+      },
+      {
+        "id": "price_above_avg",
+        "title": {
+          "en": "Current price is [x] percent above average of the next [y] hours"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=Nordpool"
+          },
+          {
+            "name": "percentage",
+            "type": "number",
+            "placeholder": {
+              "en": "percentage"
+            }
+          },
+          {
+            "name": "hours",
+            "type": "number",
+            "placeholder": {
+              "en": "hours"
+            }
+          }
+        ]
+      },
+      {
+        "id": "price_at_lowest",
+        "title": {
+          "en": "Current price is at the lowest among the next [x] hours"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=Nordpool"
+          },
+          {
+            "name": "hours",
+            "type": "number",
+            "placeholder": {
+              "en": "hours"
+            }
+          }
+        ]
+      },
+      {
+        "id": "price_at_highest",
+        "title": {
+          "en": "Current price is at the highest among the next [x] hours"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=Nordpool"
+          },
+          {
+            "name": "hours",
+            "type": "number",
+            "placeholder": {
+              "en": "hours"
+            }
+          }
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "current_price_below",
+        "title": {
+          "en": "Current price !{{below|above}}"
+        },
+        "args": [
+          {
+            "name": "price",
+            "type": "number",
+            "placeholder": {
+              "en": "price"
+            }
+          },
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=Nordpool"
+          }
+        ]
+      }
+    ]
+  }
+}
