@@ -3,7 +3,7 @@
 const Homey = require('homey'),
     _ = require('lodash'),
     moment = require('moment'),
-    nordpool = require('./lib/nordpool');
+    nordpool = require('../../lib/nordpool');
 
 class NordpoolDevice extends Homey.Device {
 
