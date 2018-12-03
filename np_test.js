@@ -1,14 +1,17 @@
 const moment = require('moment-timezone');
 const nordpool = require('./lib/nordpool');
+const _ = require('lodash');
 
-nordpool.getHourlyPrices({priceArea: 'Bergen', currency: 'NOK'})
+nordpool.getHourlyPrices(moment(), {priceArea: 'Bergen', currency: 'NOK'})
     .then(prices => {
-        console.log('prices', prices);
-
-        var now = moment().format('YYYY-MM-DD HH');
-        const currentPrice = prices.find(p => p.startsAt.format('YYYY-MM-DD HH') === now);
-
-        console.log('currentPrice', currentPrice);
+        nordpool.getHourlyPrices(moment().add(1, 'days'), {priceArea: 'Bergen', currency: 'NOK'})
+            .then(pr2 => {
+                Array.prototype.push.apply(prices, pr2);
+                console.log('prices', prices);
+                const currentHour = moment().format('YYYY-MM-DD\THH');
+                const currentPrice = prices.find(p => moment(p.startsAt).format('YYYY-MM-DD\THH') === currentHour);
+                console.log('currentPrice', currentPrice);
+            }).catch(console.error);
     })
     .catch(console.error);
 

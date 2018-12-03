@@ -49,10 +49,18 @@ class NordpoolDevice extends Homey.Device {
         let priceArea = settings.priceArea || 'Oslo';
         this.log('fetchData: ', this.getData().id, settings, priceArea);
 
-        nordpool.getHourlyPrices({priceArea: priceArea, currency: 'NOK'})
+        nordpool.getHourlyPrices(moment(), {priceArea: priceArea, currency: 'NOK'})
             .then(prices => {
-                this.scheduleFetchData(120);
-                return this.onData(prices);
+                nordpool.getHourlyPrices(moment().add(1, 'days'), {priceArea: priceArea, currency: 'NOK'})
+                    .then(pr2 => {
+                        Array.prototype.push.apply(prices, pr2);
+                        this.scheduleFetchData(120);
+                        return this.onData(prices);
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        this.scheduleFetchData(120);
+                    });
             })
             .catch(err => {
                 console.error(err);
@@ -67,41 +75,39 @@ class NordpoolDevice extends Homey.Device {
 
     async onData(prices) {
 
-        const currentHour = moment().format('YYYY-MM-DD HH');
-        const currentPrice = prices.find(p => p.startsAt.format('YYYY-MM-DD HH') === currentHour);
+        const currentHour = moment().format('YYYY-MM-DD\THH');
+        const currentPrice = prices.find(p => moment(p.startsAt).format('YYYY-MM-DD\THH') === currentHour);
 
-        this.log('currentPrice', currentPrice.startsAt.format(), currentPrice.price);
+        this.log('currentPrice', currentPrice.startsAt, currentPrice.price);
 
-        if (!this._lastPrice || currentPrice.startsAt.format() !== this._lastPrice.startsAt.format()) {
+        if (!this._lastPrice || currentPrice.startsAt !== this._lastPrice.startsAt) {
             this._lastPrice = currentPrice;
             this._priceChangedTrigger.trigger(this, currentPrice);
             this.setCapabilityValue("price", currentPrice.price).catch(console.error);
             this.log('Triggering price_changed', currentPrice);
 
-            let priceInfoNextHours = prices;
-
             this._priceBelowAvgTrigger.trigger(this, null, {
                 below: true,
                 currentPrice: currentPrice,
-                priceInfoNextHours: priceInfoNextHours
+                priceInfoNextHours: prices
             }).catch(console.error);
 
             this._priceAboveAvgTrigger.trigger(this, null, {
                 below: false,
                 currentPrice: currentPrice,
-                priceInfoNextHours: priceInfoNextHours
+                priceInfoNextHours: prices
             }).catch(console.error);
 
             this._priceAtLowestTrigger.trigger(this, null, {
                 lowest: true,
                 currentPrice: currentPrice,
-                priceInfoNextHours: priceInfoNextHours
+                priceInfoNextHours: prices
             }).catch(console.error);
 
             this._priceAtHighestTrigger.trigger(this, null, {
                 lowest: false,
                 currentPrice: currentPrice,
-                priceInfoNextHours: priceInfoNextHours
+                priceInfoNextHours: prices
             }).catch(console.error);
 
         }
@@ -114,7 +120,7 @@ class NordpoolDevice extends Homey.Device {
 
         const now = moment();
         let avgPriceNextHours = _(state.priceInfoNextHours)
-            .filter(p => args.hours > 0 ? p.startsAt.isAfter(now) : p.startsAt.isBefore(now))
+            .filter(p => args.hours > 0 ? moment(p.startsAt).isAfter(now) : moment(p.startsAt).isBefore(now))
             .take(Math.abs(args.hours))
             .meanBy(x => x.price);
 
@@ -134,7 +140,7 @@ class NordpoolDevice extends Homey.Device {
 
         const now = moment();
         let pricesNextHours = _(state.priceInfoNextHours)
-            .filter(p => args.hours > 0 ? p.startsAt.isAfter(now) : p.startsAt.isBefore(now))
+            .filter(p => args.hours > 0 ? moment(p.startsAt).isAfter(now) : moment(p.startsAt).isBefore(now))
             .take(Math.abs(args.hours))
             .value();
 
@@ -144,7 +150,7 @@ class NordpoolDevice extends Homey.Device {
         const conditionMet = state.lowest ? state.currentPrice.price <= toCompare
             : state.currentPrice.price >= toCompare;
 
-        this.log(`${state.currentPrice.price.toFixed(2)} is ${state.lowest ? 'lowest than the lowest' : 'higher than the highest'} (${toCompare}) among the next ${args.hours} hours = ${conditionMet}`);
+        this.log(`${state.currentPrice.price.toFixed(2)} is ${state.lowest ? 'lower than the lowest' : 'higher than the highest'} (${toCompare}) among the next ${args.hours} hours = ${conditionMet}`);
         return conditionMet;
     }
 
