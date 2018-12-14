@@ -47,6 +47,7 @@ class NordpoolDevice extends Homey.Device {
     }
 
     checkData() {
+        this.clearCheckData();
         const currentHour = moment().format('YYYY-MM-DD\THH');
         if (!this._prices || !this._lastFetchData || this._lastFetchData.format('YYYY-MM-DD\THH') !== currentHour) {
             this.fetchData();
@@ -56,9 +57,17 @@ class NordpoolDevice extends Homey.Device {
         this.scheduleCheckData(60);
     }
 
+    clearCheckData() {
+        if (this.curTimeout) {
+            clearTimeout(this.curTimeout);
+            this.curTimeout = undefined;
+        }
+    }
+
     scheduleCheckData(seconds) {
+        this.clearCheckData();
         this.log(`Checking data in ${seconds} seconds`);
-        setTimeout(this.checkData.bind(this), seconds * 1000);
+        this.curTimeout = setTimeout(this.checkData.bind(this), seconds * 1000);
     }
 
     async fetchData() {

@@ -1,11 +1,13 @@
 # Nordpool
 
-Nordpool Elspot Prices for Athom Homey
+Nordpool Elspot Prices for Athom Homey.
 
 ## Flow cards
 
-### Device: Home
+### Device: Nordpool
+
 #### Triggers
+
 - Price changed
 - Current price is at the lowest among the next [x] hours
 - Current price is at the highest among the next [x] hours
