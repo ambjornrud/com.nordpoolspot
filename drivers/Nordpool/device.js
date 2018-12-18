@@ -36,6 +36,16 @@ class NordpoolDevice extends Homey.Device {
             .register()
             .registerRunListener(this._priceMinMaxComparer.bind(this));
 
+        this._lowHoursOnTrigger = new Homey.FlowCardTriggerDevice('low_x_of_y_hours');
+        this._lowHoursOnTrigger
+            .register()
+            .registerRunListener(this._lowHoursComparer.bind(this));
+
+        this._lowHoursOffTrigger = new Homey.FlowCardTriggerDevice('low_x_of_y_hours');
+        this._lowHoursOffTrigger
+            .register()
+            .registerRunListener(this._lowHoursComparer.bind(this));
+
         this._currentPriceBelowCondition = new Homey.FlowCardCondition('current_price_below');
         this._currentPriceBelowCondition
             .register()
@@ -125,6 +135,19 @@ class NordpoolDevice extends Homey.Device {
                 prices: this._prices
             }).catch(console.error);
 
+            this._lowHoursOnTrigger.trigger(this, {
+                onoff: true
+            }, {
+                onofftrigger: true,
+                prices: this._prices
+            }).catch(console.error);
+
+            this._lowHoursOffTrigger.trigger(this, {
+                onoff: false
+            }, {
+                onofftrigger: false,
+                prices: this._prices
+            }).catch(console.error);
         }
     }
 
@@ -167,6 +190,32 @@ class NordpoolDevice extends Homey.Device {
 
         this.log(`${state.currentPrice.price.toFixed(2)} is ${state.lowest ? 'lower than the lowest' : 'higher than the highest'} (${toCompare}) among the next ${args.hours} hours = ${conditionMet}`);
         return conditionMet;
+    }
+
+    _lowHoursComparer(args, state) {
+        if (!args.low_hours || !args.num_hours || !args.starting_hour) {
+            return false;
+        }
+
+        const now = moment();
+        const startingAt = moment().hours(args.starting_hour).minutes(0).second(0).millisecond(0);
+
+        let pricesNextHours = _(state.prices)
+            .filter(p => moment(p.startsAt).isSameOrAfter(startingAt))
+            .take(args.num_hours)
+            .value();
+        if (pricesNextHours.length === 0) {
+            return false;
+        }
+
+        // Search for lowest prices for the next hours after the start hour
+        let onNowOrOff = _(pricesNextHours)
+            .sortBy(['price'])
+            .take(args.low_hours)
+            .filter(p => moment(p.startsAt).isBefore(now) && moment(p.startsAt).add(1, 'hours').minutes(0).second(0).millisecond(0).isAfter(now));
+
+        // Will trig if onofftrigger is true and found, or onofftrigger is false and not found
+        return state.onofftrigger && onNowOrOff.size() === 1 || !state.onofftrigger && onNowOrOff.size() === 0;
     }
 
 }
