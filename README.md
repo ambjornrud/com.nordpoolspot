@@ -19,5 +19,8 @@ Nordpool Elspot Prices for Athom Homey.
 
 ### Release Notes
 
+#### 0.1.0
+- Blank "starting hour" means 00:00 for "Low price [x] of the [y] hours starting at [z] hours today" - trigger
+
 #### 0.0.1
 - Initial version

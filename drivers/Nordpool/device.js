@@ -193,12 +193,13 @@ class NordpoolDevice extends Homey.Device {
     }
 
     _lowHoursComparer(args, state) {
-        if (!args.low_hours || !args.num_hours || !args.starting_hour) {
+        if (!args.low_hours || !args.num_hours) {
             return false;
         }
 
+        const starting_hour = args.starting_hour || 0;
         const now = moment();
-        const startingAt = moment().hours(args.starting_hour).minutes(0).second(0).millisecond(0);
+        const startingAt = moment().hours(starting_hour).minutes(0).second(0).millisecond(0);
 
         let pricesNextHours = _(state.prices)
             .filter(p => moment(p.startsAt).isSameOrAfter(startingAt))
