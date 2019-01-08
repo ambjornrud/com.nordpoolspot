@@ -49,7 +49,7 @@ Promise.all([
 ]).then(result => {
     let prices = result[0];
     Array.prototype.push.apply(prices, result[1]);
-    handleData(prices, 1, 3, 9);
+    handleData(prices, 18, 24, 0);
 }).catch(console.error);
 
 
