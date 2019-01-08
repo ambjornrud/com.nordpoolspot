@@ -99,39 +99,133 @@
               "value": "Oslo",
               "values": [
                 {
+                  "id": "SE1",
+                  "label": {
+                    "en": "SE - SE1"
+                  }
+                },
+                {
+                  "id": "SE2",
+                  "label": {
+                    "en": "SE - SE2"
+                  }
+                },
+                {
+                  "id": "SE3",
+                  "label": {
+                    "en": "SE - SE3"
+                  }
+                },
+                {
+                  "id": "SE4",
+                  "label": {
+                    "en": "SE - SE4"
+                  }
+                },
+                {
+                  "id": "DK1",
+                  "label": {
+                    "en": "DK - DK1"
+                  }
+                },
+                {
+                  "id": "DK2",
+                  "label": {
+                    "en": "DK - DK2"
+                  }
+                },
+                {
+                  "id": "FI",
+                  "label": {
+                    "en": "FI"
+                  }
+                },
+                {
                   "id": "Oslo",
                   "label": {
-                    "en": "Oslo"
+                    "en": "NO - Oslo"
                   }
                 },
                 {
                   "id": "Kr.sand",
                   "label": {
-                    "en": "Kr.sand"
+                    "en": "NO - Kr.sand"
                   }
                 },
                 {
                   "id": "Bergen",
                   "label": {
-                    "en": "Bergen"
+                    "en": "NO - Bergen"
                   }
                 },
                 {
                   "id": "Molde",
                   "label": {
-                    "en": "Molde"
+                    "en": "NO - Molde"
                   }
                 },
                 {
                   "id": "Tr.heim",
                   "label": {
-                    "en": "Tr.heim"
+                    "en": "NO - Tr.heim"
                   }
                 },
                 {
                   "id": "Tromsø",
                   "label": {
-                    "en": "Tromsø"
+                    "en": "NO - Tromsø"
+                  }
+                },
+                {
+                  "id": "EE",
+                  "label": {
+                    "en": "EE"
+                  }
+                },
+                {
+                  "id": "LV",
+                  "label": {
+                    "en": "LV"
+                  }
+                },
+                {
+                  "id": "LT",
+                  "label": {
+                    "en": "LT"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "currency",
+              "type": "dropdown",
+              "label": {
+                "en": "Currency"
+              },
+              "value": "EUR",
+              "values": [
+                {
+                  "id": "EUR",
+                  "label": {
+                    "en": "EUR"
+                  }
+                },
+                {
+                  "id": "DKK",
+                  "label": {
+                    "en": "DKK"
+                  }
+                },
+                {
+                  "id": "NOK",
+                  "label": {
+                    "en": "NOK"
+                  }
+                },
+                {
+                  "id": "SEK",
+                  "label": {
+                    "en": "SEK"
                   }
                 }
               ]

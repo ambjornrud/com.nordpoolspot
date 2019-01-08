@@ -83,10 +83,11 @@ class NordpoolDevice extends Homey.Device {
     async fetchData() {
         let settings = this.getSettings();
         let priceArea = settings.priceArea || 'Oslo';
+        let currency = settings.currency || 'NOK';
         this.log('fetchData: ', this.getData().id, settings, priceArea);
         Promise.all([
-            nordpool.getHourlyPrices(moment(), {priceArea: priceArea, currency: 'NOK'}),
-            nordpool.getHourlyPrices(moment().add(1, 'days'), {priceArea: priceArea, currency: 'NOK'})
+            nordpool.getHourlyPrices(moment(), {priceArea: priceArea, currency: currency}),
+            nordpool.getHourlyPrices(moment().add(1, 'days'), {priceArea: priceArea, currency: currency})
         ]).then(result => {
             let prices = result[0];
             Array.prototype.push.apply(prices, result[1]);
