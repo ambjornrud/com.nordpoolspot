@@ -19,6 +19,16 @@ Nordpool Elspot Prices for Athom Homey.
 
 ### Release Notes
 
+#### 0.3.0
+- Forked from balmli/com.nordpoolspot
+- Fix parsing of prices with spaces
+- Timeout (15 sek)
+- Price as EUR/kWh, DKK/kWh, SEK/kWh, NOK/kWh
+
+#### 0.2.0
+- More priceAreas and support currency
+- Switched to http.min: Asynchronous call with Promise, repo cleanup
+
 #### 0.1.0
 - Blank "starting hour" means 00:00 for "Low price [x] of the [y] hours starting at [z] hours today" - trigger
 
