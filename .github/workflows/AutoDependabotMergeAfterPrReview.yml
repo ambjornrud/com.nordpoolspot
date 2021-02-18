@@ -20,6 +20,7 @@ jobs:
         approvals: '2'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
     - name: Second step
       if: steps.approved.outputs.approved == 'true'
       uses: mshick/add-pr-comment@v1
