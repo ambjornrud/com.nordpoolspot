@@ -1,0 +1,31 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+# Basic dependabot.yml file with
+# minimum configuration for two package managers
+version: 2
+updates:
+# Enable version updates for npm
+- package-ecosystem: npm
+  # Look for package.json files from the `root` directory
+  directory: "/" # Location of package manifests
+  # Check for updates every day (weekdays)
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  # Add assignees
+  assignees:
+    - "MrCaiNinja"
+  # Add reviewers
+  reviewers:
+    - "MrCaiNinja"
+    - "janeven"
+    # Virker ikke:
+    #- "Ambjornrud/the-panters"
+  # Specify labels for dependabot pull requests
+  labels:
+    - "dependabot"
+    - "dependencies"
+  # Associate pull requests with milestone-id for "0.3.1"
+  milestone: 1
