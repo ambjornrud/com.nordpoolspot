@@ -1,0 +1,31 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Automatic Dependabot-merge After Pr-Review
+
+# Controls when the action will run. Triggers the workflow on PR review
+on: pull_request_review
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "myJob"
+  myJob:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: First step
+      uses: taichi/approved-event-action@main
+      id: approved
+      with:
+        approvals: '2'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Second step
+      if: steps.approved.outputs.approved == 'true'
+      uses: mshick/add-pr-comment@v1
+      with:
+        message: |
+          @dependabot merge
+        repo-token: ${{ secrets.AUTODEPENDABOTMERGEAFTERPRREVIEW }}
+        repo-token-user-login: 'janeven' # The user.login for temporary GitHub tokens
+        allow-repeats: false # This is the default
