@@ -14,7 +14,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: First step
-      uses: taichi/approved-event-action@main
+      uses: taichi/approved-event-action@master
       id: approved
       with:
         approvals: '2'
