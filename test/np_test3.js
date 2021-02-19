@@ -1,7 +1,7 @@
 'use strict';
 
 const moment = require('moment-timezone');
-const nordpool = require('./lib/nordpool');
+const nordpool = require('../lib/nordpool');
 const _ = require('lodash');
 
 let handleData = function (prices, low_hours, num_hours, starting) {

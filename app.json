@@ -1,6 +1,6 @@
 {
   "id": "com.nordpoolspot",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "compatibility": ">=1.5.0",
   "sdk": 2,
   "name": {
@@ -11,10 +11,19 @@
       "nordpool",
       "elspot",
       "prices"
+    ],
+    "no": [
+      "nordpool",
+      "kraftbørs",
+      "strømbørs",
+      "spot",
+      "strøm",
+      "priser"
     ]
   },
   "description": {
-    "en": "Nordpool Elspot Prices"
+    "en": "Nordpool Elspot Prices",
+    "no": "Spotpris fra Nordpool strømbørs"
   },
   "category": [
     "tools"
@@ -50,8 +59,7 @@
       "getable": true,
       "setable": false,
       "units": {
-        "en": "NOK",
-        "no": "kroner"
+        "en": "-"
       }
     }
   },
@@ -93,14 +101,16 @@
         {
           "type": "group",
           "label": {
-            "en": "General settings"
+            "en": "General settings",
+            "no": "Generelle innstillinger"
           },
           "children": [
             {
               "id": "priceArea",
               "type": "dropdown",
               "label": {
-                "en": "Price area"
+                "en": "Price area",
+                "no": "Prisområde"
               },
               "value": "Oslo",
               "values": [
@@ -149,37 +159,37 @@
                 {
                   "id": "Oslo",
                   "label": {
-                    "en": "NO - Oslo"
+                    "en": "Øst-Norge (No1): Oslo"
                   }
                 },
                 {
                   "id": "Kr.sand",
                   "label": {
-                    "en": "NO - Kr.sand"
+                    "en": "Sør-Vest-Norge (No2): Kristiansand"
                   }
                 },
                 {
                   "id": "Bergen",
                   "label": {
-                    "en": "NO - Bergen"
+                    "en": "Vest-Norge (No5): Bergen"
                   }
                 },
                 {
                   "id": "Molde",
                   "label": {
-                    "en": "NO - Molde"
+                    "en": "Midt-Norge (No3): Molde"
                   }
                 },
                 {
                   "id": "Tr.heim",
                   "label": {
-                    "en": "NO - Tr.heim"
+                    "en": "Midt-Norge (No3): Trondheim"
                   }
                 },
                 {
                   "id": "Tromsø",
                   "label": {
-                    "en": "NO - Tromsø"
+                    "en": "Nord-Norge (No4): Tromsø"
                   }
                 },
                 {
@@ -199,6 +209,42 @@
                   "label": {
                     "en": "LT"
                   }
+                },
+                {
+                  "id": "AT",
+                  "label": {
+                    "en": "AT"
+                  }
+                },
+                {
+                  "id": "BE",
+                  "label": {
+                    "en": "BE"
+                  }
+                },
+                {
+                  "id": "DE-LU",
+                  "label": {
+                    "en": "DE-LU"
+                  }
+                },
+                {
+                  "id": "FR",
+                  "label": {
+                    "en": "FR"
+                  }
+                },
+                {
+                  "id": "NL",
+                  "label": {
+                    "en": "NL"
+                  }
+                },
+                {
+                  "id": "PL",
+                  "label": {
+                    "en": "PL"
+                  }
                 }
               ]
             },
@@ -206,7 +252,8 @@
               "id": "currency",
               "type": "dropdown",
               "label": {
-                "en": "Currency"
+                "en": "Currency",
+                "no": "Valuta"
               },
               "value": "EUR",
               "values": [
@@ -263,21 +310,24 @@
       {
         "id": "price_changed",
         "title": {
-          "en": "Price changed"
+          "en": "Price changed",
+          "no": "Prisendring"
         },
         "tokens": [
           {
             "name": "price",
             "type": "number",
             "title": {
-              "en": "price"
+              "en": "price",
+              "no": "pris"
             }
           },
           {
             "name": "priceArea",
             "type": "string",
             "title": {
-              "en": "price area"
+              "en": "price area",
+              "no": "prisområde"
             }
           }
         ],
@@ -292,7 +342,8 @@
       {
         "id": "price_below_avg",
         "title": {
-          "en": "Current price is [x] percent below average of the next [y] hours"
+          "en": "Current price is [x] percent below average of the next [y] hours",
+          "no": "Gjeldende pris er [x] prosent under gjennomsnittet av de neste [y] timer"
         },
         "args": [
           {
@@ -304,14 +355,16 @@
             "name": "percentage",
             "type": "number",
             "placeholder": {
-              "en": "percentage"
+              "en": "percentage",
+              "no": "prosentdel"
             }
           },
           {
             "name": "hours",
             "type": "number",
             "placeholder": {
-              "en": "hours"
+              "en": "hours",
+              "no": "timer"
             }
           }
         ]
@@ -319,7 +372,8 @@
       {
         "id": "price_above_avg",
         "title": {
-          "en": "Current price is [x] percent above average of the next [y] hours"
+          "en": "Current price is [x] percent above average of the next [y] hours",
+          "no": "Gjeldende pris er [x] prosent over gjennomsnittet av de neste [y] timer"
         },
         "args": [
           {
@@ -331,14 +385,16 @@
             "name": "percentage",
             "type": "number",
             "placeholder": {
-              "en": "percentage"
+              "en": "percentage",
+              "no": "prosentdel"
             }
           },
           {
             "name": "hours",
             "type": "number",
             "placeholder": {
-              "en": "hours"
+              "en": "hours",
+              "no": "timer"
             }
           }
         ]
@@ -346,7 +402,8 @@
       {
         "id": "price_at_lowest",
         "title": {
-          "en": "Current price is at the lowest among the next [x] hours"
+          "en": "Current price is at the lowest among the next [x] hours",
+          "no": "Gjeldende pris er på det laveste i de neste [x] timer"
         },
         "args": [
           {
@@ -358,7 +415,8 @@
             "name": "hours",
             "type": "number",
             "placeholder": {
-              "en": "hours"
+              "en": "hours",
+              "no": "timer"
             }
           }
         ]
@@ -366,7 +424,8 @@
       {
         "id": "price_at_highest",
         "title": {
-          "en": "Current price is at the highest among the next [x] hours"
+          "en": "Current price is at the highest among the next [x] hours",
+          "no": "Gjeldende pris er på det høyeste i de neste [x] timer"
         },
         "args": [
           {
@@ -378,7 +437,8 @@
             "name": "hours",
             "type": "number",
             "placeholder": {
-              "en": "hours"
+              "en": "hours",
+              "no": "timer"
             }
           }
         ]
@@ -386,14 +446,16 @@
       {
         "id": "low_x_of_y_hours",
         "title": {
-          "en": "Low price [x] of the [y] hours starting at [z] hours today"
+          "en": "Low price [x] of the [y] hours starting at [z] hours today",
+          "no": "Billigste pris i [x] av [y] timer etter klokken [z] i dag"
         },
         "tokens": [
           {
             "name": "onoff",
             "type": "boolean",
             "title": {
-              "en": "onoff"
+              "en": "onoff",
+              "no": "avpå"
             }
           }
         ],
@@ -407,21 +469,24 @@
             "name": "low_hours",
             "type": "number",
             "placeholder": {
-              "en": "low_hours"
+              "en": "low_hours",
+              "no": "billigste_timer"
             }
           },
           {
             "name": "num_hours",
             "type": "number",
             "placeholder": {
-              "en": "num_hours"
+              "en": "num_hours",
+              "no": "antall_timer"
             }
           },
           {
             "name": "starting_hour",
             "type": "number",
             "placeholder": {
-              "en": "starting_hour"
+              "en": "starting_hour",
+              "no": "etter_klokken"
             }
           }
         ]
@@ -431,14 +496,16 @@
       {
         "id": "current_price_below",
         "title": {
-          "en": "Current price !{{below|above}}"
+          "en": "Current price !{{below|above}}",
+          "no": "Gjeldende pris !{{under|over}}"
         },
         "args": [
           {
             "name": "price",
             "type": "number",
             "placeholder": {
-              "en": "price"
+              "en": "price",
+              "no": "pris"
             }
           },
           {

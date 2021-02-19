@@ -1,17 +1,40 @@
 {
   "name": "com.nordpoolspot",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Integration with Nordpool",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "homepage": "https://github.com/ambjornrud/com.nordpoolspot/wiki",
+  "author": "Ambjornrud <post@ambjornrud.no>",
+  "keywords": [
+    "nordpool",
+    "elspot",
+    "prices"
+  ],
+  "main": "./app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ambjornrud/com.nordpoolspot.git"
   },
-  "author": "Ambjornrud",
+  "bugs": {
+    "url": "https://github.com/ambjornrud/com.nordpoolspot/issues"
+  },
   "license": "ISC",
   "dependencies": {
     "http.min": "1.3.2",
     "lodash": "^4.17.19",
     "moment": "^2.22.2",
     "moment-timezone": "^0.5.23"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-datetime": "^1.5.0",
+    "eslint": "^7.20.0",
+    "mocha": "^8.3.0"
+  },
+  "scripts": {
+    "init": "eslint --init",
+    "scale-img": "convert ./drivers/Nordpool/assets/images/213fb9ea81347c68b86e14e7168bce33.png -resize 500x500 ./drivers/Nordpool/assets/images/large.png && convert ./drivers/Nordpool/assets/images/213fb9ea81347c68b86e14e7168bce33.png -resize 75x75 ./drivers/Nordpool/assets/images/small.png",
+    "pretest": "eslint --ignore-path .gitignore app.js lib drivers test",
+    "test": "./node_modules/.bin/mocha --reporter spec",
+    "posttest": "homey app validate --level publish"
   }
 }

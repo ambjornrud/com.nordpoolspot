@@ -1,5 +1,5 @@
 const moment = require('moment-timezone');
-const nordpool = require('./lib/nordpool');
+const nordpool = require('../lib/nordpool');
 const _ = require('lodash');
 
 nordpool.getHourlyPrices(moment(), {priceArea: 'Bergen', currency: 'NOK'})
