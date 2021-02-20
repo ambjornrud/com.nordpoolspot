@@ -20,8 +20,9 @@ Nordpool Elspot Prices for Athom Homey.
 ### Release Notes
 
 #### 0.3.1 (beta)
-- New price areas: AT, BE, DE-LU, FR, NL, PL
-- Translations for app: no
+- New price areas: SYS, AT, BE, DE-LU, FR, NL, PL, UK
+- New currency: GBP
+- Translations for driver: no
 
 #### 0.3.0
 - Forked from balmli/com.nordpoolspot

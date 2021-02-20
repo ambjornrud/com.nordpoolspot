@@ -115,135 +115,171 @@
               "value": "Oslo",
               "values": [
                 {
+                  "id": "SYS",
+                  "label": {
+                    "en": "System price (SYS)",
+                    "no": "Systempris (SYS)"
+                  }
+                },
+                {
                   "id": "SE1",
                   "label": {
-                    "en": "SE - SE1"
+                    "en": "Sweden (SE1)",
+                    "no": "Sverige (SE1)"
                   }
                 },
                 {
                   "id": "SE2",
                   "label": {
-                    "en": "SE - SE2"
+                    "en": "Sweden (SE2)",
+                    "no": "Sverige (SE2)"
                   }
                 },
                 {
                   "id": "SE3",
                   "label": {
-                    "en": "SE - SE3"
+                    "en": "Sweden (SE3)",
+                    "no": "Sverige (SE3)"
                   }
                 },
                 {
                   "id": "SE4",
                   "label": {
-                    "en": "SE - SE4"
+                    "en": "Sweden (SE4)",
+                    "no": "Sverige (SE4)"
                   }
                 },
                 {
                   "id": "DK1",
                   "label": {
-                    "en": "DK - DK1"
+                    "en": "Denmark (DK1)",
+                    "no": "Danmark (DK1)"
                   }
                 },
                 {
                   "id": "DK2",
                   "label": {
-                    "en": "DK - DK2"
+                    "en": "Denmark (DK2)",
+                    "no": "Danmark (DK2)"
                   }
                 },
                 {
                   "id": "FI",
                   "label": {
-                    "en": "FI"
+                    "en": "Finland (FI)",
+                    "no": "Finland (FI)"
                   }
                 },
                 {
                   "id": "Oslo",
                   "label": {
-                    "en": "Øst-Norge (No1): Oslo"
+                    "en": "Norway East (NO1 / Oslo)",
+                    "no": "Norge øst (NO1 / Oslo)"
                   }
                 },
                 {
                   "id": "Kr.sand",
                   "label": {
-                    "en": "Sør-Vest-Norge (No2): Kristiansand"
+                    "en": "Norway South-west (NO2 / Kristiansand)",
+                    "no": "Norge sørvest (NO2 / Kristiansand)"
                   }
                 },
                 {
                   "id": "Bergen",
                   "label": {
-                    "en": "Vest-Norge (No5): Bergen"
+                    "en": "Norway West (NO5 / Bergen)",
+                    "no": "Norge vest (NO5 / Bergen)"
                   }
                 },
                 {
                   "id": "Molde",
                   "label": {
-                    "en": "Midt-Norge (No3): Molde"
+                    "en": "Norway Middle (NO3 / Molde)",
+                    "no": "Norge midt (NO3 / Molde)"
                   }
                 },
                 {
                   "id": "Tr.heim",
                   "label": {
-                    "en": "Midt-Norge (No3): Trondheim"
+                    "en": "Norway Middle (NO3 / Trondheim)",
+                    "no": "Norge midt (NO3 / Trondheim)"
                   }
                 },
                 {
                   "id": "Tromsø",
                   "label": {
-                    "en": "Nord-Norge (No4): Tromsø"
+                    "en": "Norway North (NO4 / Tromsø)",
+                    "no": "Norge nord (NO4 / Tromsø)"
                   }
                 },
                 {
                   "id": "EE",
                   "label": {
-                    "en": "EE"
+                    "en": "Estonia (EE)",
+                    "no": "Estland (EE)"
                   }
                 },
                 {
                   "id": "LV",
                   "label": {
-                    "en": "LV"
+                    "en": "Latvia (LV)",
+                    "no": "Latvia (LV)"
                   }
                 },
                 {
                   "id": "LT",
                   "label": {
-                    "en": "LT"
+                    "en": "Lithuania (LT)",
+                    "no": "Litauen (LT)"
                   }
                 },
                 {
                   "id": "AT",
                   "label": {
-                    "en": "AT"
+                    "en": "Austria (AT)",
+                    "no": "Østerrike (AT)"
                   }
                 },
                 {
                   "id": "BE",
                   "label": {
-                    "en": "BE"
+                    "en": "Belgium (BE)",
+                    "no": "Belgia (BE)"
                   }
                 },
                 {
                   "id": "DE-LU",
                   "label": {
-                    "en": "DE-LU"
+                    "en": "Germany and Luxembourg (DE-LU)",
+                    "no": "Tyskland og Luxemburg (DE-LU)"
                   }
                 },
                 {
                   "id": "FR",
                   "label": {
-                    "en": "FR"
+                    "en": "France (FR)",
+                    "no": "Frankrike (FR)"
                   }
                 },
                 {
                   "id": "NL",
                   "label": {
-                    "en": "NL"
+                    "en": "Netherlands (NL)",
+                    "no": "Nederland (NL)"
                   }
                 },
                 {
                   "id": "PL",
                   "label": {
-                    "en": "PL"
+                    "en": "Poland (PL)",
+                    "no": "Polen (PL)"
+                  }
+                },
+                {
+                  "id": "UK",
+                  "label": {
+                    "en": "United Kingdom (UK)",
+                    "no": "Storbritannia (UK)"
                   }
                 }
               ]
@@ -279,6 +315,12 @@
                   "id": "SEK",
                   "label": {
                     "en": "SEK"
+                  }
+                },
+                {
+                  "id": "GBP",
+                  "label": {
+                    "en": "GBP"
                   }
                 }
               ]
